@@ -1,0 +1,588 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mahila Mitra ❤️ — A special website dedicated to Vaishnavi N Patil">
+  <meta property="og:title" content="Mahila Mitra ❤️">
+  <meta property="og:description" content="Some friendships feel like they existed before we met.">
+  <title>Mahila Mitra ❤️ | Vaishnavi N Patil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=11">
+</head>
+
+<body>
+
+  <!-- Global Ambient Background -->
+  <div class="global-ambient-bg">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="ambient-grain"></div>
+  </div>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor">
+    <div class="cursor-dot"></div>
+  </div>
+  <div class="cursor-trail" id="cursorTrail">
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Scroll Progress -->
+  <div id="scrollProgress"></div>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen">
+    <div class="loader-inner">
+      <div class="loader-heart">💜</div>
+      <p class="loader-label">Loading something special...</p>
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-brand">
+      <span class="nav-logo">💜</span>
+      <span class="nav-title">Mahila Mitra</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#story" class="nav-a">Story</a></li>
+      <li><a href="#timeline" class="nav-a">Memories</a></li>
+      <li><a href="#nicknames" class="nav-a">Nicknames</a></li>
+      <li><a href="#qualities" class="nav-a">Qualities</a></li>
+      <li><a href="#gallery" class="nav-a">Gallery</a></li>
+      <li><a href="#audioGallery" class="nav-a">Audio 🎵</a></li>
+      <li><a href="#meter" class="nav-a">Meter</a></li>
+      <li><a href="#secret" class="nav-a secret-nav">Secret 🔒</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button id="themeToggle" class="icon-btn" title="Toggle theme">☀️</button>
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div id="navOverlay"></div>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section id="hero">
+    <!-- Full-bleed background photo -->
+    <div class="hero-bg-photo">
+      <img src="assets/photo_5.jpg" alt="Vaishnavi" class="hero-bg-img">
+      <!-- Film grain overlay -->
+      <div class="hero-grain"></div>
+      <!-- Vignette -->
+      <div class="hero-vignette"></div>
+      <!-- Dark gradient from bottom -->
+      <div class="hero-gradient"></div>
+    </div>
+
+    <!-- Floating hearts kept subtle -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Content pinned to bottom-left like a magazine -->
+    <div class="hero-overlay-content">
+      <div class="hero-tag-pill">✨ A Friendship Story</div>
+      <h1 class="hero-name-big">Vaishnavi<br><span class="hero-name-script">N Patil</span></h1>
+      <p class="hero-overlay-quote">"Some friendships feel like they existed before we met."</p>
+      <div class="hero-typing-row">
+        <span class="hero-aka">Also known as </span>
+        <span id="typingText" class="hero-typing-val"></span><span class="typing-cursor">|</span>
+      </div>
+      <a href="#story" class="hero-scroll-btn">
+        <span>Explore Memories</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Floating polaroid of her photo in corner -->
+    <div class="hero-polaroid-corner">
+      <div class="hero-polaroid-clip"></div>
+      <div class="hero-polaroid-frame">
+        <img src="assets/photo_5.jpg" alt="Vaishnavi">
+        <div class="hero-polaroid-caption">Mahila Mitra 💜</div>
+      </div>
+    </div>
+
+    <!-- Heart DP badge -->
+    <div class="hero-badge">
+      <img src="assets/photo_5.jpg" alt="dp" class="hero-badge-img">
+      <div class="hero-badge-ring"></div>
+    </div>
+
+    <div class="scroll-cue">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ LIVE COUNTER ═══════════════════════════ -->
+  <section id="liveCounter" class="section alt-section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">Time Together</span>
+        <h2 class="sec-title">Every Second Counts</h2>
+        <p class="sec-sub">Counting the beautiful moments since September 2024</p>
+      </div>
+      <div class="counter-wrap reveal">
+        <div class="time-box glass-card">
+          <span class="time-val" id="countDays">0</span>
+          <span class="time-lbl">Days</span>
+        </div>
+        <div class="time-box glass-card">
+          <span class="time-val" id="countHours">00</span>
+          <span class="time-lbl">Hours</span>
+        </div>
+        <div class="time-box glass-card">
+          <span class="time-val" id="countMinutes">00</span>
+          <span class="time-lbl">Minutes</span>
+        </div>
+        <div class="time-box glass-card">
+          <span class="time-val" id="countSeconds">00</span>
+          <span class="time-lbl">Seconds</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ STORY ═══════════════════════════ -->
+  <section id="story" class="section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">The Beginning</span>
+        <h2 class="sec-title">Our Friendship Story</h2>
+        <p class="sec-sub">How two strangers became best friends</p>
+      </div>
+      <div class="story-grid">
+        <div class="story-text reveal-left">
+          <div class="story-badge">📅 October 2024 · CAED Lab</div>
+          <h3 class="story-h">The Day Everything Started</h3>
+          <p>It was a regular college day when Vaishnavi walked over and asked for help — her PC wasn't working in the
+            CAED Lab. She was wearing a dark blue top that day.</p>
+          <p>What started as a simple technical request quietly turned into one of the most meaningful friendships of my
+            life. The connection felt unusual, almost as if we already knew each other from some other time.</p>
+          <p>It felt less like meeting someone for the first time, and more like <em>reconnecting</em> with someone I
+            had known for a very long time.</p>
+          <div class="story-tags">
+            <span class="s-tag">💻 CAED Lab</span>
+            <span class="s-tag">📅 Oct 2024</span>
+            <span class="s-tag">👕 Dark Blue Top</span>
+            <span class="s-tag">✨ Instant Connection</span>
+          </div>
+        </div>
+        <div class="story-visual reveal-right">
+          <div class="story-quote-card glass-card">
+            <div class="sqc-icon">💻</div>
+            <blockquote class="sqc-quote">"Her PC wasn't working. I helped. A friendship was born."</blockquote>
+            <div class="sqc-src">— October 2024, CAED Lab</div>
+            <div class="sqc-sparks">✨ 💜 ✨</div>
+          </div>
+          <div class="story-stats">
+            <div class="s-stat glass-card">
+              <span class="s-stat-n">1000s</span>
+              <span class="s-stat-l">Of Smiles Shared</span>
+            </div>
+            <div class="s-stat glass-card">
+              <span class="s-stat-n">∞</span>
+              <span class="s-stat-l">Memories Created</span>
+            </div>
+            <div class="s-stat glass-card">
+              <span class="s-stat-n">100%</span>
+              <span class="s-stat-l">Trust Level</span>
+            </div>
+            <div class="s-stat glass-card">
+              <span class="s-stat-n">4h</span>
+              <span class="s-stat-l">Longest Call</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ TIMELINE ═══════════════════════════ -->
+  <section id="timeline" class="section alt-section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">Special Moments</span>
+        <h2 class="sec-title">Memory Timeline</h2>
+        <p class="sec-sub">Every moment worth remembering</p>
+      </div>
+      <div class="timeline-wrap">
+        <div class="tl-item reveal-left" data-side="left">
+          <div class="tl-dot">📞</div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">📞</div>
+            <h3>The 4-Hour Photo Call</h3>
+            <p>The first time in my life I talked with someone for almost 4 hours in a single day. The conversation felt
+              effortless, natural, and completely unforgettable. Every minute was worth it.</p>
+            <span class="tl-badge">First of Many</span>
+          </div>
+        </div>
+        <div class="tl-item reveal-right" data-side="right">
+          <div class="tl-dot">🚀</div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">🚀</div>
+            <h3>Cracking the Project Interview</h3>
+            <p>One of the proudest moments of our friendship. We successfully cleared a project interview together.
+              After hearing the result, we celebrated with a selfie — a symbol of teamwork, friendship, and shared
+              success.</p>
+            <div class="timeline-photo-row">
+              <img src="assets/photo_12.jpg" alt="Project Interview Selfie 1" class="timeline-photo">
+              <img src="assets/photo_15.jpg" alt="Project Interview Selfie 2" class="timeline-photo">
+            </div>
+            <span class="tl-badge" style="margin-top: 15px; display: inline-block;">Champions 🏆</span>
+          </div>
+        </div>
+        <div class="tl-item reveal-left" data-side="left">
+          <div class="tl-dot">💜</div>
+          <div class="tl-card glass-card">
+            <div class="tl-emoji">💜</div>
+            <h3>The Ongoing Journey</h3>
+            <p>From disagreements to endless laughter, from late-night chats to milestone celebrations — every moment
+              has been special because Mahila Mitra was a part of it. And the story is still being written.</p>
+            <span class="tl-badge">Still Writing ✍️</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ NICKNAME WALL ═══════════════════════════ -->
+  <section id="nicknames" class="section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">She Has Many Names</span>
+        <h2 class="sec-title">The Nickname Wall</h2>
+        <p class="sec-sub">Click any nickname to reveal its secret meaning</p>
+      </div>
+      <div class="nickname-grid reveal" id="nicknameGrid"></div>
+    </div>
+  </section>
+
+  <!-- Nickname Modal -->
+  <div id="nicknameModal" class="nn-modal">
+    <div class="nn-modal-card glass-card">
+      <button class="modal-x" id="modalClose">✕</button>
+      <span class="modal-emoji" id="modalEmoji">💜</span>
+      <h3 class="modal-name" id="modalName"></h3>
+      <p class="modal-msg" id="modalMsg"></p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ QUALITIES ═══════════════════════════ -->
+  <section id="qualities" class="section alt-section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">What Makes Her Shine</span>
+        <h2 class="sec-title">Her Qualities</h2>
+        <p class="sec-sub">10 reasons she's absolutely irreplaceable</p>
+      </div>
+      <div class="qualities-grid" id="qualitiesGrid"></div>
+      <div class="quality-highlight reveal">
+        <div class="qh-card glass-card">
+          <span class="qh-icon">🕊️</span>
+          <p class="qh-quote">"Whenever we have disagreements, she is usually the first person to try to solve the issue
+            and make things normal again."</p>
+          <span class="qh-src">— Purush Mitra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ GALLERY ═══════════════════════════ -->
+  <section id="gallery" class="gallery-fairy-section">
+    <div class="gallery-fairy-header reveal">
+      <span class="sec-label">Captured Moments</span>
+      <h2 class="sec-title">Photo Gallery</h2>
+      <p class="sec-sub">A visual journey through our friendship ✨</p>
+      <div class="gallery-tabs reveal" style="margin-top:28px;">
+        <button class="g-tab active" data-tab="all">All Photos</button>
+        <button class="g-tab" data-tab="solo">Vaishuuu Gallery 📸</button>
+        <button class="g-tab" data-tab="friendship">Friendship Gallery 💞</button>
+      </div>
+    </div>
+
+    <!-- String lights rows + polaroids rendered by JS -->
+    <div class="fairy-wall" id="fairyWall">
+      <!-- Row 1 -->
+      <div class="string-row">
+        <svg class="string-svg" viewBox="0 0 1200 80" preserveAspectRatio="none">
+          <path d="M0,30 Q300,80 600,30 Q900,0 1200,40" fill="none" stroke="#5a4a00" stroke-width="2" />
+        </svg>
+        <div class="bulbs-row" id="bulbRow1"></div>
+        <div class="polaroid-row" id="polaroidRow1"></div>
+      </div>
+      <!-- Row 2 -->
+      <div class="string-row">
+        <svg class="string-svg" viewBox="0 0 1200 80" preserveAspectRatio="none">
+          <path d="M0,50 Q300,0 600,50 Q900,80 1200,30" fill="none" stroke="#5a4a00" stroke-width="2" />
+        </svg>
+        <div class="bulbs-row" id="bulbRow2"></div>
+        <div class="polaroid-row" id="polaroidRow2"></div>
+      </div>
+      <!-- Row 3 -->
+      <div class="string-row">
+        <svg class="string-svg" viewBox="0 0 1200 80" preserveAspectRatio="none">
+          <path d="M0,35 Q400,80 700,25 Q900,5 1200,50" fill="none" stroke="#5a4a00" stroke-width="2" />
+        </svg>
+        <div class="bulbs-row" id="bulbRow3"></div>
+        <div class="polaroid-row" id="polaroidRow3"></div>
+      </div>
+      <!-- Floating hearts -->
+      <div class="fairy-heart fh1">❤️</div>
+      <div class="fairy-heart fh2">❤️</div>
+      <div class="fairy-heart fh3">💜</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ AUDIO GALLERY ═══════════════════════════ -->
+  <section id="audioGallery" class="section alt-section" style="position: relative; overflow: hidden;">
+    <!-- Aesthetic Background Elements -->
+    <div class="audio-ambient-orb orb-left"></div>
+    <div class="audio-ambient-orb orb-right"></div>
+    <div class="floating-notes">
+      <div class="f-note n1">🎵</div>
+      <div class="f-note n2">🎶</div>
+      <div class="f-note n3">🎵</div>
+      <div class="f-note n4">💜</div>
+      <div class="f-note n5">🎶</div>
+      <div class="f-note n6">✨</div>
+    </div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="sec-head reveal">
+        <span class="sec-label">Voice & Songs</span>
+        <h2 class="sec-title">Audio Memories 🎵</h2>
+        <p class="sec-sub">Every voice note, every song — a little piece of us 💜</p>
+      </div>
+      <div class="audio-grid reveal" id="audioGrid">
+        <!-- Cards injected by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button id="lbClose">✕</button>
+    <button id="lbPrev">‹</button>
+    <button id="lbNext">›</button>
+    <div class="lb-content">
+      <img id="lbImg" src="" alt="">
+      <p id="lbCaption"></p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ METER ═══════════════════════════ -->
+  <section id="meter" class="section alt-section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">Our Bond in Numbers</span>
+        <h2 class="sec-title">Friendship Meter</h2>
+        <p class="sec-sub">Some things can be measured. This one barely fits the scale.</p>
+      </div>
+      <div class="meter-wrap reveal" id="meterWrap"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ WHY SHE'S AWESOME ═══════════════════════════ -->
+  <section id="awesome" class="section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">The Full List</span>
+        <h2 class="sec-title">Why She Is Awesome</h2>
+        <p class="sec-sub">20 reasons, and we're still counting</p>
+      </div>
+      <div class="awesome-grid reveal" id="awesomeGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SECRET ═══════════════════════════ -->
+  <section id="secret" class="section alt-section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">Psst...</span>
+        <h2 class="sec-title">Secret Message 🔒</h2>
+        <p class="sec-sub">If you know, you know.</p>
+      </div>
+      <div class="secret-wrap reveal">
+        <div class="secret-lock glass-card" id="secretLock">
+          <div class="lock-icon" id="lockIcon">🔒</div>
+          <p class="lock-hint">Enter the password to reveal the secret message</p>
+          <div class="secret-input-row">
+            <input type="password" id="secretInput" class="secret-input" placeholder="Enter password...">
+            <button id="secretBtn" class="secret-btn">Unlock 💜</button>
+          </div>
+          <p class="lock-clue">Hint: What is she called? (2 words)</p>
+          <p class="lock-err" id="lockErr"></p>
+        </div>
+        <div class="secret-letter glass-card" id="secretLetter" style="display:none">
+          <div class="letter-top">
+            <span class="letter-seal">💜</span>
+            <h3>Dear Mahila Mitra 💜</h3>
+          </div>
+          <div class="letter-body">
+            <p>Sometimes I wonder how a simple moment in the CAED lab in October 2024 turned into one of the most
+              meaningful friendships in my life.</p>
+            <p>You came to me because your PC wasn't working, but little did I know that day would start a friendship I
+              would always cherish.</p>
+            <p>From our conversations to our endless laughter, from the 4-hour photo call to celebrating achievements
+              together after cracking our project interview, every memory has become special because you were a part of
+              it.</p>
+            <p>You are caring, intelligent, honest, supportive, funny, hardworking, and a great listener. But the thing
+              I admire most is your heart.</p>
+            <p>Even when we have disagreements, you are often the first person to take a step toward fixing things. That
+              says a lot about the kind of person you are.</p>
+            <p>The nicknames may be funny, but behind every nickname is a memory, a smile, and a bond that means a lot
+              to me.</p>
+            <p>Thank you for being someone I can talk to, laugh with, celebrate with, and share life's moments with.</p>
+            <p>Meeting you never felt like meeting a stranger. It felt like reconnecting with someone I had known for a
+              very long time.</p>
+            <p>No matter where life takes us, the memories we've created will always have a special place in my heart.
+            </p>
+          </div>
+          <div class="letter-sig">— Tarun ❤️</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CERTIFICATE ═══════════════════════════ -->
+  <section id="certificate" class="section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">Official Recognition</span>
+        <h2 class="sec-title">Friendship Certificate</h2>
+        <p class="sec-sub">Because some bonds deserve official recognition</p>
+      </div>
+      <div class="cert-wrap reveal">
+        <canvas id="certCanvas" width="800" height="560"></canvas>
+        <button id="downloadCert" class="primary-btn">📥 Download Certificate</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SURPRISE ═══════════════════════════ -->
+  <section id="surprise" class="section alt-section">
+    <div class="container">
+      <div class="surprise-center">
+        <div class="sec-head reveal">
+          <span class="sec-label">Psst, one more thing...</span>
+          <h2 class="sec-title">A Little Surprise 💜</h2>
+        </div>
+        <button id="surpriseBtn" class="surprise-btn reveal">
+          <span>Click for Surprise 💜</span>
+        </button>
+        <div id="surpriseMsg" class="surprise-msg glass-card" style="display:none">
+          <span class="surprise-icon">🎊</span>
+          <p>"Some people become memories. Some become home."</p>
+          <p class="surprise-name">Thank you, Mahila Mitra ❤️</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ GENERATORS ═══════════════════════════ -->
+  <section id="generators" class="section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="sec-label">Interactive</span>
+        <h2 class="sec-title">For You, Vaishnavi</h2>
+        <p class="sec-sub">Some things that never get old</p>
+      </div>
+      <div class="gen-grid">
+        <div class="gen-card glass-card reveal">
+          <h3>💬 Friendship Quote</h3>
+          <div class="gen-display" id="quoteDisplay">Click below to receive a quote about friendship ✨</div>
+          <button class="gen-btn" id="quoteBtn">New Quote ✨</button>
+        </div>
+        <div class="gen-card glass-card reveal">
+          <h3>💝 Compliment for Vaishnavi</h3>
+          <div class="gen-display" id="complimentDisplay">Click below for a personalised compliment 💜</div>
+          <button class="gen-btn" id="complimentBtn">New Compliment 💜</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ MUSIC PLAYER ═══════════════════════════ -->
+  <div id="musicPlayer" class="music-player glass-card">
+    <audio id="bgAudio" src="music.mp3" loop></audio>
+    <div class="mp-info">
+      <div class="mp-disc" id="mpDisc">🎵</div>
+      <div>
+        <div class="mp-title">Heat Waves</div>
+        <div class="mp-artist">Glass Animals</div>
+      </div>
+    </div>
+    <div class="mp-controls">
+      <button id="mpPlay" class="mp-play-btn">▶</button>
+    </div>
+    <div class="mp-vol">
+      <span>🔊</span>
+      <input type="range" id="volSlider" min="0" max="100" value="60" class="vol-range">
+    </div>
+    <button class="mp-collapse" id="mpCollapse" title="Minimise">–</button>
+  </div>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer id="footer">
+    <div class="footer-hearts" id="footerHearts"></div>
+    <div class="footer-inner">
+      <span class="footer-logo">💜</span>
+      <h3 class="footer-title">Mahila Mitra</h3>
+      <p class="footer-tagline">"Some friendships feel like they existed before we met."</p>
+      <div class="memory-counter">
+        <span class="mc-num" id="memCounter">0</span>
+        <span class="mc-lbl">Memories &amp; Counting</span>
+      </div>
+      <hr class="footer-hr">
+      <p class="footer-credit">Made with ❤️ by <strong>Purush Mitra</strong> for <strong>Pissi Mahila Mitra
+          💜🦢</strong></p>
+      <p class="footer-copy">© 2024–2025 · A friendship that feels like forever</p>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button -->
+  <div class="fab-wrap" id="fabWrap">
+    <button class="fab-main" id="fabMain" title="Actions">💜</button>
+    <div class="fab-opts" id="fabOpts">
+      <button class="fab-opt" onclick="scrollToTop()" title="Top">⬆️</button>
+      <button class="fab-opt" onclick="triggerSurprise()" title="Surprise">🎊</button>
+      <button class="fab-opt" onclick="jumpToSecret()" title="Secret">🔒</button>
+      <button class="fab-opt bd-trigger" onclick="startBirthdayMode()" title="Birthday">🎂</button>
+    </div>
+  </div>
+
+  <!-- Birthday Cinematic Overlay -->
+  <div id="birthdayCinematic" class="birthday-cinematic">
+    <button id="closeBirthday" class="close-bd">✕</button>
+    <div class="bd-slideshow" id="bdSlideshow">
+      <img src="assets/photo_1.jpg" class="bd-slide active">
+      <img src="assets/photo_2.jpg" class="bd-slide">
+      <img src="assets/photo_3.jpg" class="bd-slide">
+      <img src="assets/photo_4.jpg" class="bd-slide">
+      <img src="assets/photo_11.jpg" class="bd-slide">
+      <img src="assets/photo_12.jpg" class="bd-slide">
+    </div>
+    <div class="bd-text-wrap">
+      <h1 class="bd-title">Happy Birthday Vaishnavi! 🎂</h1>
+      <p class="bd-subtitle">To the most amazing person, a very happy birthday!</p>
+    </div>
+  </div>
+
+  <script src="script.js?v=12"></script>
+</body>
+
+</html>
