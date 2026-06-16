@@ -13,10 +13,25 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 
 <body>
+
+  <!-- Global Password Lock Screen -->
+  <div id="globalLockScreen">
+    <div class="gl-noise"></div>
+    <div class="gl-container">
+      <div class="gl-icon" id="glIcon">🔒</div>
+      <h1 class="gl-title">CLASSIFIED ARCHIVE</h1>
+      <p class="gl-subtitle">RESTRICTED ACCESS. IDENTIFICATION REQUIRED.</p>
+      <div class="gl-input-group">
+        <input type="password" id="glPassword" placeholder="Enter access code..." autocomplete="off">
+        <button id="glBtn">VERIFY</button>
+      </div>
+      <div id="glError" class="gl-error"></div>
+    </div>
+  </div>
 
   <!-- Global Ambient Background -->
   <div class="global-ambient-bg">
@@ -582,7 +597,7 @@
     </div>
   </div>
 
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=13"></script>
 </body>
 
 </html>

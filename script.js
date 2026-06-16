@@ -1094,3 +1094,52 @@ function checkBirthdayTakeover() {
 }
 
 checkBirthdayTakeover();
+
+// ── GLOBAL LOCK SCREEN ──────────────────────────────────────────
+function initGlobalLock() {
+  const lockScreen = document.getElementById('globalLockScreen');
+  const pwdInput = document.getElementById('glPassword');
+  const unlockBtn = document.getElementById('glBtn');
+  const errorMsg = document.getElementById('glError');
+  const icon = document.getElementById('glIcon');
+
+  if (!lockScreen) return;
+
+  // Lock scrolling initially
+  document.body.style.overflow = 'hidden';
+
+  function attemptUnlock() {
+    const val = pwdInput.value.trim().toLowerCase();
+    if (val === 'pissi') {
+      // Success
+      icon.textContent = '🔓';
+      icon.classList.add('granted');
+      errorMsg.style.color = '#4ade80';
+      errorMsg.textContent = 'ACCESS GRANTED';
+      pwdInput.style.borderColor = '#4ade80';
+      
+      setTimeout(() => {
+        lockScreen.classList.add('unlocked');
+        document.body.style.overflow = ''; // Restore scrolling
+        // Focus somewhere safe so spacebar doesn't scroll page unexpectedly
+        document.body.focus();
+      }, 800);
+    } else {
+      // Failure
+      errorMsg.textContent = 'ACCESS DENIED';
+      pwdInput.classList.remove('shake');
+      // Trigger reflow to restart animation
+      void pwdInput.offsetWidth;
+      pwdInput.classList.add('shake');
+      pwdInput.value = '';
+    }
+  }
+
+  unlockBtn.addEventListener('click', attemptUnlock);
+  pwdInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') attemptUnlock();
+  });
+}
+
+// Initialize lock immediately
+initGlobalLock();

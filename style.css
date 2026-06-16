@@ -45,13 +45,136 @@ button {
   font-family: 'DM Sans', sans-serif;
 }
 
+/* ── GLOBAL LOCK SCREEN ── */
+#globalLockScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+#globalLockScreen.unlocked {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.gl-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.gl-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.gl-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px rgba(232, 84, 122, 0.4));
+  transition: filter 0.3s;
+}
+
+.gl-icon.granted {
+  filter: drop-shadow(0 0 20px #4ade80);
+}
+
+.gl-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  color: #fff;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.gl-subtitle {
+  font-size: 0.75rem;
+  color: #ef4444;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.gl-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+#glPassword {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px 20px;
+  border-radius: 6px;
+  color: #fff;
+  font-family: monospace;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+  letter-spacing: 2px;
+}
+
+#glPassword:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 15px rgba(232, 84, 122, 0.2);
+}
+
+#glPassword.shake {
+  animation: shake 0.4s ease-in-out;
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+#glBtn {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0 24px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#glBtn:hover {
+  background: #ccc;
+}
+
+.gl-error {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 16px;
+  min-height: 20px;
+  letter-spacing: 1px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
 /* ── CUSTOM CURSOR ── */
 .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 999999;
 }
 
 .cursor-dot {
@@ -69,7 +192,7 @@ button {
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 999998;
 }
 
 .cursor-ring {
