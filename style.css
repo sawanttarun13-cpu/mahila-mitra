@@ -3509,3 +3509,59 @@ button {
     padding: 1.1rem;
   }
 }
+
+/* ── SCRATCH-TO-REVEAL CARD ── */
+.scratch-card-container {
+  grid-column: 1 / -1; /* span full width if in grid */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.scratch-inst {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text2);
+  margin-bottom: 20px;
+}
+
+.scratch-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--shadow);
+  user-select: none;
+  touch-action: none; /* Prevent scrolling when scratching on mobile */
+  margin: 0 auto;
+}
+
+.scratch-msg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--rose), var(--purple));
+  text-align: center;
+  line-height: 1.4;
+  z-index: 1;
+}
+
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='20' font-size='20'>🪙</text></svg>") 12 12, crosshair;
+}

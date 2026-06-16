@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=16">
 </head>
 
 <body>
@@ -538,6 +538,18 @@
           <div class="gen-display" id="complimentDisplay">Click below for a personalised compliment 💜</div>
           <button class="gen-btn" id="complimentBtn">New Compliment 💜</button>
         </div>
+        
+        <!-- Scratch-to-Reveal Card -->
+        <div class="gen-card glass-card reveal scratch-card-container">
+          <h3>🎟️ Secret Message</h3>
+          <p class="scratch-inst">Scratch the silver coating below to reveal!</p>
+          <div class="scratch-wrap" id="scratchWrap">
+            <div class="scratch-msg" id="scratchMsg">
+              Happy Birthday Vaishnavi!<br>You are the most wonderful friend I could ever ask for. 💜
+            </div>
+            <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -608,7 +620,7 @@
     </div>
   </div>
 
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=16"></script>
 </body>
 
 </html>

@@ -1250,3 +1250,111 @@ function initGlobalLock() {
 }
 
 initGlobalLock();
+
+// ── SCRATCH-TO-REVEAL CARD ───────────────────────────────────────
+function initScratchCard() {
+  const canvas = document.getElementById('scratchCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  
+  // Set canvas size to match wrapper
+  const wrap = document.getElementById('scratchWrap');
+  canvas.width = wrap.clientWidth;
+  canvas.height = wrap.clientHeight;
+
+  // Draw silver coating
+  ctx.fillStyle = '#b0bec5'; // Silver gray
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Add some texture/text
+  ctx.fillStyle = '#78909c';
+  ctx.font = '24px DM Sans, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Scratch Me! 🪙', canvas.width / 2, canvas.height / 2);
+
+  // Set composite operation so new drawing ERASES the silver coating
+  ctx.globalCompositeOperation = 'destination-out';
+  
+  let isDrawing = false;
+  let isRevealed = false;
+
+  function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+    const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+    return { x, y };
+  }
+
+  function startDrawing(e) {
+    if (isRevealed) return;
+    isDrawing = true;
+    scratch(e);
+  }
+
+  function stopDrawing() {
+    isDrawing = false;
+    checkReveal();
+  }
+
+  function scratch(e) {
+    if (!isDrawing || isRevealed) return;
+    e.preventDefault(); // Prevent scrolling on mobile
+    const { x, y } = getMousePos(e);
+    
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function checkReveal() {
+    if (isRevealed) return;
+    
+    // Check how many pixels are transparent
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = imageData.data;
+    let transparentPixels = 0;
+    
+    // Check every 4th value (alpha channel)
+    for (let i = 3; i < pixels.length; i += 4) {
+      if (pixels[i] < 128) {
+        transparentPixels++;
+      }
+    }
+    
+    const totalPixels = pixels.length / 4;
+    const percentScratched = (transparentPixels / totalPixels) * 100;
+    
+    // If more than 60% scratched, reveal the whole thing
+    if (percentScratched > 60) {
+      isRevealed = true;
+      canvas.style.transition = 'opacity 0.8s ease';
+      canvas.style.opacity = '0';
+      setTimeout(() => {
+        canvas.style.pointerEvents = 'none';
+      }, 800);
+    }
+  }
+
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', scratch);
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseleave', stopDrawing);
+
+  canvas.addEventListener('touchstart', startDrawing);
+  canvas.addEventListener('touchmove', scratch);
+  canvas.addEventListener('touchend', stopDrawing);
+}
+
+// Re-init canvas size on resize
+window.addEventListener('resize', () => {
+  const canvas = document.getElementById('scratchCanvas');
+  if (canvas && canvas.style.opacity !== '0') {
+    // If not fully revealed, we'd have to re-draw. 
+    // For simplicity, we just keep the canvas scaled by CSS,
+    // but the brush might stretch slightly.
+  }
+});
+
+// Initialize the scratch card after a short delay to ensure layout is done
+setTimeout(initScratchCard, 500);
