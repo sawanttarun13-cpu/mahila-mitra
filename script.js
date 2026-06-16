@@ -1095,40 +1095,146 @@ function checkBirthdayTakeover() {
 
 checkBirthdayTakeover();
 
-// ── GLOBAL LOCK SCREEN ──────────────────────────────────────────
+// ── CINEMATIC LOCK SCREEN ───────────────────────────────────────
 function initGlobalLock() {
   const lockScreen = document.getElementById('globalLockScreen');
-  const pwdInput = document.getElementById('glPassword');
-  const unlockBtn = document.getElementById('glBtn');
-  const errorMsg = document.getElementById('glError');
-  const icon = document.getElementById('glIcon');
+  const pwdInput   = document.getElementById('glPassword');
+  const unlockBtn  = document.getElementById('glBtn');
+  const errorMsg   = document.getElementById('glError');
+  const fpWrap     = document.getElementById('glIcon');
+  const titleEl    = document.getElementById('glTitle');
+  const subtitleEl = document.getElementById('glSubtitle');
 
   if (!lockScreen) return;
 
-  // Lock scrolling initially
   document.body.style.overflow = 'hidden';
 
+  // ── 1. MATRIX RAIN ──────────────────────────────────────────
+  const canvas = document.getElementById('glMatrix');
+  const ctx = canvas.getContext('2d');
+
+  function resizeMatrix() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeMatrix();
+  window.addEventListener('resize', resizeMatrix);
+
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()アイウエオカキクケコ';
+  const fontSize = 14;
+  let cols = Math.floor(canvas.width / fontSize);
+  let drops = Array(cols).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(3, 3, 3, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = `${fontSize}px monospace`;
+    for (let i = 0; i < drops.length; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const brightness = Math.random() > 0.95 ? '#fff' : '#8b0000';
+      ctx.fillStyle = brightness;
+      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  const matrixInterval = setInterval(drawMatrix, 50);
+
+  // ── 2. TERMINAL TYPING ──────────────────────────────────────
+  function typeText(el, text, speed, onDone) {
+    el.textContent = '';
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'gl-cursor';
+    el.appendChild(cursor);
+    const iv = setInterval(() => {
+      if (i < text.length) {
+        el.insertBefore(document.createTextNode(text[i]), cursor);
+        i++;
+      } else {
+        clearInterval(iv);
+        cursor.remove();
+        if (onDone) onDone();
+      }
+    }, speed);
+  }
+
+  // Type title first, then subtitle
+  typeText(titleEl, 'CLASSIFIED ARCHIVE', 60, () => {
+    setTimeout(() => typeText(subtitleEl, 'RESTRICTED ACCESS. IDENTIFICATION REQUIRED.', 30), 300);
+  });
+
+  // ── 3. RANDOM GLITCH on title ────────────────────────────────
+  function scheduleGlitch() {
+    const delay = 3000 + Math.random() * 4000;
+    setTimeout(() => {
+      titleEl.classList.remove('glitch');
+      void titleEl.offsetWidth;
+      titleEl.classList.add('glitch');
+      scheduleGlitch();
+    }, delay);
+  }
+  setTimeout(scheduleGlitch, 3000);
+
+  // ── 4. WEB AUDIO SOUND EFFECTS ───────────────────────────────
+  function playErrorSound() {
+    try {
+      const ac = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.connect(gain);
+      gain.connect(ac.destination);
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(180, ac.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(60, ac.currentTime + 0.3);
+      gain.gain.setValueAtTime(0.3, ac.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.3);
+      osc.start(ac.currentTime);
+      osc.stop(ac.currentTime + 0.3);
+    } catch(e) {}
+  }
+
+  function playSuccessSound() {
+    try {
+      const ac = new (window.AudioContext || window.webkitAudioContext)();
+      [523, 659, 784, 1047].forEach((freq, i) => {
+        const osc = ac.createOscillator();
+        const gain = ac.createGain();
+        osc.connect(gain);
+        gain.connect(ac.destination);
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        const t = ac.currentTime + i * 0.12;
+        gain.gain.setValueAtTime(0.0001, t);
+        gain.gain.exponentialRampToValueAtTime(0.2, t + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.2);
+        osc.start(t);
+        osc.stop(t + 0.2);
+      });
+    } catch(e) {}
+  }
+
+  // ── 5. PASSWORD CHECK ────────────────────────────────────────
   function attemptUnlock() {
     const val = pwdInput.value.trim().toLowerCase();
     if (val === 'pissi') {
-      // Success
-      icon.textContent = '🔓';
-      icon.classList.add('granted');
+      playSuccessSound();
+      fpWrap.classList.add('granted');
+      // Turn fingerprint lines green
+      document.querySelectorAll('.fp-path, .fp-scan').forEach(p => p.style.stroke = '#4ade80');
       errorMsg.style.color = '#4ade80';
-      errorMsg.textContent = 'ACCESS GRANTED';
+      errorMsg.textContent = '✓ ACCESS GRANTED';
       pwdInput.style.borderColor = '#4ade80';
-      
+      pwdInput.style.boxShadow = '0 0 20px rgba(74, 222, 128, 0.3)';
       setTimeout(() => {
+        clearInterval(matrixInterval);
         lockScreen.classList.add('unlocked');
-        document.body.style.overflow = ''; // Restore scrolling
-        // Focus somewhere safe so spacebar doesn't scroll page unexpectedly
-        document.body.focus();
-      }, 800);
+        document.body.style.overflow = '';
+      }, 900);
     } else {
-      // Failure
-      errorMsg.textContent = 'ACCESS DENIED';
+      playErrorSound();
+      errorMsg.textContent = '✗ ACCESS DENIED — INVALID CODE';
       pwdInput.classList.remove('shake');
-      // Trigger reflow to restart animation
       void pwdInput.offsetWidth;
       pwdInput.classList.add('shake');
       pwdInput.value = '';
@@ -1139,7 +1245,8 @@ function initGlobalLock() {
   pwdInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') attemptUnlock();
   });
+  // Focus password input automatically
+  setTimeout(() => pwdInput.focus(), 2000);
 }
 
-// Initialize lock immediately
 initGlobalLock();

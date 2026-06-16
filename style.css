@@ -50,12 +50,13 @@ button {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #050505;
+  background: #030303;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+  transition: opacity 0.9s ease-in-out, visibility 0.9s;
+  overflow: hidden;
 }
 
 #globalLockScreen.unlocked {
@@ -63,49 +64,144 @@ button {
   visibility: hidden;
 }
 
-.gl-noise {
+/* Matrix canvas */
+#glMatrix {
   position: absolute;
   inset: 0;
-  opacity: 0.1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.25;
   pointer-events: none;
+}
+
+/* Subtle red pulse overlay */
+.gl-red-pulse {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(180, 10, 10, 0.12) 0%, transparent 70%);
+  animation: redPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes redPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 
 .gl-container {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 400px;
+  max-width: 420px;
   width: 90%;
 }
 
-.gl-icon {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 0 15px rgba(232, 84, 122, 0.4));
-  transition: filter 0.3s;
+/* ── Fingerprint Icon ── */
+.gl-fp-wrap {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 24px;
+  position: relative;
+  animation: fpPulse 2.5s ease-in-out infinite;
 }
 
-.gl-icon.granted {
-  filter: drop-shadow(0 0 20px #4ade80);
+@keyframes fpPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.5)); }
+  50% { filter: drop-shadow(0 0 18px rgba(239, 68, 68, 0.9)); }
 }
 
+.gl-fp-wrap.granted {
+  animation: fpGranted 0.4s ease forwards;
+}
+
+@keyframes fpGranted {
+  to { filter: drop-shadow(0 0 22px #4ade80); }
+}
+
+.gl-fp-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fp-path {
+  stroke: #ef4444;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: fpDraw 2.5s ease-out forwards;
+}
+
+.fp-path:nth-child(1) { animation-delay: 0.1s; }
+.fp-path:nth-child(2) { animation-delay: 0.2s; }
+.fp-path:nth-child(3) { animation-delay: 0.35s; }
+.fp-path:nth-child(4) { animation-delay: 0.5s; }
+.fp-path:nth-child(5) { animation-delay: 0.65s; }
+.fp-path:nth-child(6) { animation-delay: 0.8s; }
+.fp-path:nth-child(7) { animation-delay: 0.95s; }
+.fp-path:nth-child(8) { animation-delay: 1.1s; }
+
+@keyframes fpDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Horizontal scan line sweeping up/down */
+.fp-scan {
+  stroke: rgba(239, 68, 68, 0.7);
+  animation: fpScanLine 2s linear infinite 1.5s;
+}
+
+@keyframes fpScanLine {
+  0%   { y1: 10; y2: 10; }
+  50%  { y1: 90; y2: 90; }
+  100% { y1: 10; y2: 10; }
+}
+
+/* ── Glitch Title ── */
 .gl-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', monospace;
   font-weight: 700;
   font-size: 1.8rem;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   color: #fff;
   margin-bottom: 8px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.2);
+  min-height: 2rem;
+  position: relative;
+}
+
+.gl-title.glitch {
+  animation: glitch 0.25s linear;
+}
+
+@keyframes glitch {
+  0%   { text-shadow: none; }
+  20%  { text-shadow: -3px 0 #ff0000, 3px 0 #00ffff; transform: skewX(-5deg); }
+  40%  { text-shadow: 3px 0 #ff0000, -3px 0 #00ffff; transform: skewX(4deg); }
+  60%  { text-shadow: -2px 0 #ff0000, 2px 0 #00ffff; transform: skewX(-2deg); }
+  80%  { text-shadow: none; transform: skewX(0deg); }
+  100% { text-shadow: none; }
 }
 
 .gl-subtitle {
-  font-size: 0.75rem;
+  font-family: monospace;
+  font-size: 0.73rem;
   color: #ef4444;
   letter-spacing: 2px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   font-weight: 600;
+  min-height: 1rem;
+}
+
+/* Typing cursor blink */
+.gl-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #ef4444;
+  vertical-align: text-bottom;
+  animation: blinkCursor 0.7s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .gl-input-group {
@@ -115,57 +211,61 @@ button {
 
 #glPassword {
   flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   padding: 14px 20px;
-  border-radius: 6px;
+  border-radius: 4px;
   color: #fff;
   font-family: monospace;
   font-size: 1rem;
   outline: none;
   transition: all 0.2s;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 #glPassword:focus {
-  border-color: var(--rose);
-  box-shadow: 0 0 15px rgba(232, 84, 122, 0.2);
+  border-color: #ef4444;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.25);
 }
 
 #glPassword.shake {
   animation: shake 0.4s ease-in-out;
   border-color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(239, 68, 68, 0.08);
 }
 
 #glBtn {
-  background: #fff;
-  color: #000;
-  border: none;
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid #ef4444;
   padding: 0 24px;
-  border-radius: 6px;
+  border-radius: 4px;
   font-weight: 700;
+  font-family: monospace;
   letter-spacing: 1px;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 #glBtn:hover {
-  background: #ccc;
+  background: rgba(239, 68, 68, 0.15);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
 }
 
 .gl-error {
   color: #ef4444;
-  font-size: 0.8rem;
+  font-family: monospace;
+  font-size: 0.78rem;
   margin-top: 16px;
   min-height: 20px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-8px); }
-  75% { transform: translateX(8px); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
 }
 
 /* ── CUSTOM CURSOR ── */
