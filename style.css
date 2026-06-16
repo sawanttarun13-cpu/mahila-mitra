@@ -82,8 +82,15 @@ button {
 }
 
 @keyframes redPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .gl-container {
@@ -104,8 +111,15 @@ button {
 }
 
 @keyframes fpPulse {
-  0%, 100% { filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.5)); }
-  50% { filter: drop-shadow(0 0 18px rgba(239, 68, 68, 0.9)); }
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.5));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 18px rgba(239, 68, 68, 0.9));
+  }
 }
 
 .gl-fp-wrap.granted {
@@ -113,7 +127,9 @@ button {
 }
 
 @keyframes fpGranted {
-  to { filter: drop-shadow(0 0 22px #4ade80); }
+  to {
+    filter: drop-shadow(0 0 22px #4ade80);
+  }
 }
 
 .gl-fp-svg {
@@ -128,17 +144,42 @@ button {
   animation: fpDraw 2.5s ease-out forwards;
 }
 
-.fp-path:nth-child(1) { animation-delay: 0.1s; }
-.fp-path:nth-child(2) { animation-delay: 0.2s; }
-.fp-path:nth-child(3) { animation-delay: 0.35s; }
-.fp-path:nth-child(4) { animation-delay: 0.5s; }
-.fp-path:nth-child(5) { animation-delay: 0.65s; }
-.fp-path:nth-child(6) { animation-delay: 0.8s; }
-.fp-path:nth-child(7) { animation-delay: 0.95s; }
-.fp-path:nth-child(8) { animation-delay: 1.1s; }
+.fp-path:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.fp-path:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.fp-path:nth-child(3) {
+  animation-delay: 0.35s;
+}
+
+.fp-path:nth-child(4) {
+  animation-delay: 0.5s;
+}
+
+.fp-path:nth-child(5) {
+  animation-delay: 0.65s;
+}
+
+.fp-path:nth-child(6) {
+  animation-delay: 0.8s;
+}
+
+.fp-path:nth-child(7) {
+  animation-delay: 0.95s;
+}
+
+.fp-path:nth-child(8) {
+  animation-delay: 1.1s;
+}
 
 @keyframes fpDraw {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Horizontal scan line sweeping up/down */
@@ -148,9 +189,20 @@ button {
 }
 
 @keyframes fpScanLine {
-  0%   { y1: 10; y2: 10; }
-  50%  { y1: 90; y2: 90; }
-  100% { y1: 10; y2: 10; }
+  0% {
+    y1: 10;
+    y2: 10;
+  }
+
+  50% {
+    y1: 90;
+    y2: 90;
+  }
+
+  100% {
+    y1: 10;
+    y2: 10;
+  }
 }
 
 /* ── Glitch Title ── */
@@ -170,12 +222,33 @@ button {
 }
 
 @keyframes glitch {
-  0%   { text-shadow: none; }
-  20%  { text-shadow: -3px 0 #ff0000, 3px 0 #00ffff; transform: skewX(-5deg); }
-  40%  { text-shadow: 3px 0 #ff0000, -3px 0 #00ffff; transform: skewX(4deg); }
-  60%  { text-shadow: -2px 0 #ff0000, 2px 0 #00ffff; transform: skewX(-2deg); }
-  80%  { text-shadow: none; transform: skewX(0deg); }
-  100% { text-shadow: none; }
+  0% {
+    text-shadow: none;
+  }
+
+  20% {
+    text-shadow: -3px 0 #ff0000, 3px 0 #00ffff;
+    transform: skewX(-5deg);
+  }
+
+  40% {
+    text-shadow: 3px 0 #ff0000, -3px 0 #00ffff;
+    transform: skewX(4deg);
+  }
+
+  60% {
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+    transform: skewX(-2deg);
+  }
+
+  80% {
+    text-shadow: none;
+    transform: skewX(0deg);
+  }
+
+  100% {
+    text-shadow: none;
+  }
 }
 
 .gl-subtitle {
@@ -200,8 +273,15 @@ button {
 }
 
 @keyframes blinkCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 .gl-input-group {
@@ -263,9 +343,19 @@ button {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-10px); }
-  75% { transform: translateX(10px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-10px);
+  }
+
+  75% {
+    transform: translateX(10px);
+  }
 }
 
 /* ── CUSTOM CURSOR ── */
@@ -1648,7 +1738,8 @@ button {
   transform: rotateY(180deg);
 }
 
-.polaroid-front, .polaroid-back {
+.polaroid-front,
+.polaroid-back {
   position: absolute;
   top: 0;
   left: 0;
@@ -1679,13 +1770,15 @@ button {
 }
 
 /* Polaroid frame */
-.polaroid-frame, .polaroid-note-bg {
+.polaroid-frame,
+.polaroid-note-bg {
   background: #f5f0e8;
   padding: 8px 8px 28px 8px;
   border-radius: 3px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
   width: 130px;
-  height: 146px; /* 160 - 14 roughly */
+  height: 146px;
+  /* 160 - 14 roughly */
 }
 
 .polaroid-note-bg {
@@ -1695,7 +1788,7 @@ button {
   align-items: center;
   background: #fdf5e6;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-image: repeating-linear-gradient(transparent, transparent 20px, rgba(0,0,0,0.05) 20px, rgba(0,0,0,0.05) 21px);
+  background-image: repeating-linear-gradient(transparent, transparent 20px, rgba(0, 0, 0, 0.05) 20px, rgba(0, 0, 0, 0.05) 21px);
 }
 
 .polaroid-note-text {
@@ -1711,7 +1804,7 @@ button {
 .polaroid-note-date {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.65rem;
-  color: rgba(0,0,0,0.4);
+  color: rgba(0, 0, 0, 0.4);
   position: absolute;
   bottom: 8px;
 }
@@ -3095,8 +3188,13 @@ button {
 }
 
 @keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, -40px) scale(1.1); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
 }
 
 /* Floating Musical Notes */
@@ -3116,12 +3214,48 @@ button {
   animation: floatUpNote 15s linear infinite;
 }
 
-.f-note.n1 { left: 10%; animation-duration: 18s; animation-delay: 0s; font-size: 1.8rem; }
-.f-note.n2 { left: 85%; animation-duration: 14s; animation-delay: 2s; font-size: 2rem; filter: blur(2px); }
-.f-note.n3 { left: 25%; animation-duration: 20s; animation-delay: 5s; }
-.f-note.n4 { left: 70%; animation-duration: 16s; animation-delay: 1s; font-size: 1.2rem; }
-.f-note.n5 { left: 45%; animation-duration: 19s; animation-delay: 8s; font-size: 2.2rem; filter: blur(3px); }
-.f-note.n6 { left: 60%; animation-duration: 13s; animation-delay: 4s; font-size: 1.4rem; }
+.f-note.n1 {
+  left: 10%;
+  animation-duration: 18s;
+  animation-delay: 0s;
+  font-size: 1.8rem;
+}
+
+.f-note.n2 {
+  left: 85%;
+  animation-duration: 14s;
+  animation-delay: 2s;
+  font-size: 2rem;
+  filter: blur(2px);
+}
+
+.f-note.n3 {
+  left: 25%;
+  animation-duration: 20s;
+  animation-delay: 5s;
+}
+
+.f-note.n4 {
+  left: 70%;
+  animation-duration: 16s;
+  animation-delay: 1s;
+  font-size: 1.2rem;
+}
+
+.f-note.n5 {
+  left: 45%;
+  animation-duration: 19s;
+  animation-delay: 8s;
+  font-size: 2.2rem;
+  filter: blur(3px);
+}
+
+.f-note.n6 {
+  left: 60%;
+  animation-duration: 13s;
+  animation-delay: 4s;
+  font-size: 1.4rem;
+}
 
 @keyframes floatUpNote {
   0% {
@@ -3129,8 +3263,15 @@ button {
     opacity: 0;
     transform: translateX(0) rotate(0deg);
   }
-  10% { opacity: 0.4; }
-  90% { opacity: 0.4; }
+
+  10% {
+    opacity: 0.4;
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
   100% {
     bottom: 110%;
     opacity: 0;
@@ -3201,8 +3342,15 @@ button {
 }
 
 @keyframes pulse-soft {
-  0%, 100% { box-shadow: 0 4px 12px rgba(167, 100, 255, 0.4); }
-  50%       { box-shadow: 0 4px 20px rgba(167, 100, 255, 0.7); }
+
+  0%,
+  100% {
+    box-shadow: 0 4px 12px rgba(167, 100, 255, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 4px 20px rgba(167, 100, 255, 0.7);
+  }
 }
 
 .audio-card.playing .audio-icon {
@@ -3247,17 +3395,44 @@ button {
   transition: height 0.2s ease;
 }
 
-.audio-card.playing .audio-wave .bar:nth-child(1) { animation: wave-bar 0.9s ease-in-out infinite; }
-.audio-card.playing .audio-wave .bar:nth-child(2) { animation: wave-bar 0.7s ease-in-out infinite 0.1s; }
-.audio-card.playing .audio-wave .bar:nth-child(3) { animation: wave-bar 1.0s ease-in-out infinite 0.2s; }
-.audio-card.playing .audio-wave .bar:nth-child(4) { animation: wave-bar 0.8s ease-in-out infinite 0.05s; }
-.audio-card.playing .audio-wave .bar:nth-child(5) { animation: wave-bar 1.1s ease-in-out infinite 0.15s; }
-.audio-card.playing .audio-wave .bar:nth-child(6) { animation: wave-bar 0.75s ease-in-out infinite 0.3s; }
-.audio-card.playing .audio-wave .bar:nth-child(7) { animation: wave-bar 0.95s ease-in-out infinite 0.1s; }
+.audio-card.playing .audio-wave .bar:nth-child(1) {
+  animation: wave-bar 0.9s ease-in-out infinite;
+}
+
+.audio-card.playing .audio-wave .bar:nth-child(2) {
+  animation: wave-bar 0.7s ease-in-out infinite 0.1s;
+}
+
+.audio-card.playing .audio-wave .bar:nth-child(3) {
+  animation: wave-bar 1.0s ease-in-out infinite 0.2s;
+}
+
+.audio-card.playing .audio-wave .bar:nth-child(4) {
+  animation: wave-bar 0.8s ease-in-out infinite 0.05s;
+}
+
+.audio-card.playing .audio-wave .bar:nth-child(5) {
+  animation: wave-bar 1.1s ease-in-out infinite 0.15s;
+}
+
+.audio-card.playing .audio-wave .bar:nth-child(6) {
+  animation: wave-bar 0.75s ease-in-out infinite 0.3s;
+}
+
+.audio-card.playing .audio-wave .bar:nth-child(7) {
+  animation: wave-bar 0.95s ease-in-out infinite 0.1s;
+}
 
 @keyframes wave-bar {
-  0%, 100% { height: 4px; }
-  50%       { height: 20px; }
+
+  0%,
+  100% {
+    height: 4px;
+  }
+
+  50% {
+    height: 20px;
+  }
 }
 
 /* Custom audio controls */

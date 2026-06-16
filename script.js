@@ -422,7 +422,7 @@ function renderGallery(filter) {
       const hang = document.createElement('div');
       hang.className = 'polaroid-hang';
       hang.style.transform = `rotate(${angle}deg)`;
-      
+
       hang.innerHTML = `
         <div class="polaroid-inner">
           <div class="polaroid-front">
@@ -440,15 +440,15 @@ function renderGallery(filter) {
             </div>
           </div>
         </div>`;
-      
+
       hang.addEventListener('click', () => {
         // Toggle flip
         hang.classList.toggle('flipped');
-        
+
         // If they want to see it full screen, they can double click (optional fallback)
         // openLightbox(p.origIdx)
       });
-      
+
       row.appendChild(hang);
     });
   });
@@ -941,20 +941,20 @@ window.startBirthdayMode = startBirthdayMode;
 
 const AUDIO_FILES = [
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.06 PM.mpeg", label: "Voice Note 1 🎙️" },
-  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.07 PM.mp4",  label: "Voice Note 2 🎵" },
+  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.07 PM.mp4", label: "Voice Note 2 🎵" },
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.07 PM.mpeg", label: "Voice Note 3 💜" },
-  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.08 PM.mp4",  label: "Voice Note 4 🎙️" },
+  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.08 PM.mp4", label: "Voice Note 4 🎙️" },
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.08 PM.mpeg", label: "Voice Note 5 🎵" },
-  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.09 PM.mp4",  label: "Voice Note 6 💜" },
+  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.09 PM.mp4", label: "Voice Note 6 💜" },
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.09 PM.mpeg", label: "Voice Note 7 🎙️" },
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.10 PM.mpeg", label: "Voice Note 8 🎵" },
-  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.11 PM.mp4",  label: "Voice Note 9 💜" },
+  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.11 PM.mp4", label: "Voice Note 9 💜" },
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.11 PM.mpeg", label: "Voice Note 10 🎙️" },
-  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.12 PM.mp4",  label: "Voice Note 11 🎵" },
+  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.12 PM.mp4", label: "Voice Note 11 🎵" },
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.12 PM.mpeg", label: "Voice Note 12 💜" },
-  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.13 PM.mp4",  label: "Voice Note 13 🎙️" },
+  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.13 PM.mp4", label: "Voice Note 13 🎙️" },
   { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.13 PM.mpeg", label: "Voice Note 14 🎵" },
-  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.14 PM.mp4",  label: "Voice Note 15 💜" },
+  { src: "assets/WhatsApp Audio 2026-06-10 at 9.35.14 PM.mp4", label: "Voice Note 15 💜" },
 ];
 
 function formatTime(secs) {
@@ -1000,10 +1000,10 @@ function buildAudioGallery() {
     `;
 
     const audio = new Audio(track.src);
-    const playBtn  = card.querySelector('.audio-play-btn');
+    const playBtn = card.querySelector('.audio-play-btn');
     const progress = card.querySelector('.audio-progress');
-    const curTime  = card.querySelector('.current-time');
-    const durTime  = card.querySelector('.duration');
+    const curTime = card.querySelector('.current-time');
+    const durTime = card.querySelector('.duration');
 
     // Play / Pause
     playBtn.addEventListener('click', () => {
@@ -1098,11 +1098,11 @@ checkBirthdayTakeover();
 // ── CINEMATIC LOCK SCREEN ───────────────────────────────────────
 function initGlobalLock() {
   const lockScreen = document.getElementById('globalLockScreen');
-  const pwdInput   = document.getElementById('glPassword');
-  const unlockBtn  = document.getElementById('glBtn');
-  const errorMsg   = document.getElementById('glError');
-  const fpWrap     = document.getElementById('glIcon');
-  const titleEl    = document.getElementById('glTitle');
+  const pwdInput = document.getElementById('glPassword');
+  const unlockBtn = document.getElementById('glBtn');
+  const errorMsg = document.getElementById('glError');
+  const fpWrap = document.getElementById('glIcon');
+  const titleEl = document.getElementById('glTitle');
   const subtitleEl = document.getElementById('glSubtitle');
 
   if (!lockScreen) return;
@@ -1160,8 +1160,8 @@ function initGlobalLock() {
   }
 
   // Type title first, then subtitle
-  typeText(titleEl, 'CLASSIFIED ARCHIVE', 60, () => {
-    setTimeout(() => typeText(subtitleEl, 'RESTRICTED ACCESS. IDENTIFICATION REQUIRED.', 30), 300);
+  typeText(titleEl, 'PRIVATE ARCHIVE ✨', 60, () => {
+    setTimeout(() => typeText(subtitleEl, 'only besties allowed 💜', 30), 300);
   });
 
   // ── 3. RANDOM GLITCH on title ────────────────────────────────
@@ -1191,7 +1191,7 @@ function initGlobalLock() {
       gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + 0.3);
       osc.start(ac.currentTime);
       osc.stop(ac.currentTime + 0.3);
-    } catch(e) {}
+    } catch (e) { }
   }
 
   function playSuccessSound() {
@@ -1211,7 +1211,7 @@ function initGlobalLock() {
         osc.start(t);
         osc.stop(t + 0.2);
       });
-    } catch(e) {}
+    } catch (e) { }
   }
 
   // ── 5. PASSWORD CHECK ────────────────────────────────────────
@@ -1221,11 +1221,11 @@ function initGlobalLock() {
       playSuccessSound();
       fpWrap.classList.add('granted');
       // Turn fingerprint lines green
-      document.querySelectorAll('.fp-path, .fp-scan').forEach(p => p.style.stroke = '#4ade80');
-      errorMsg.style.color = '#4ade80';
-      errorMsg.textContent = '✓ ACCESS GRANTED';
-      pwdInput.style.borderColor = '#4ade80';
-      pwdInput.style.boxShadow = '0 0 20px rgba(74, 222, 128, 0.3)';
+      document.querySelectorAll('.fp-path, .fp-scan').forEach(p => p.style.stroke = '#f5d06e');
+      errorMsg.style.color = '#f5d06e';
+      errorMsg.textContent = '✨ welcome in, bestie ✨';
+      pwdInput.style.borderColor = '#f5d06e';
+      pwdInput.style.boxShadow = '0 0 20px rgba(245, 208, 110, 0.4)';
       setTimeout(() => {
         clearInterval(matrixInterval);
         lockScreen.classList.add('unlocked');
@@ -1233,7 +1233,7 @@ function initGlobalLock() {
       }, 900);
     } else {
       playErrorSound();
-      errorMsg.textContent = '✗ ACCESS DENIED — INVALID CODE';
+      errorMsg.textContent = '🎀 oops! try again pookie 🎀';
       pwdInput.classList.remove('shake');
       void pwdInput.offsetWidth;
       pwdInput.classList.add('shake');
