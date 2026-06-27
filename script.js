@@ -1217,7 +1217,7 @@ function initGlobalLock() {
   // ── 5. PASSWORD CHECK ────────────────────────────────────────
   function attemptUnlock() {
     const val = pwdInput.value.trim().toLowerCase();
-    if (val === 'pissi') {
+    if (val === 'password') {
       playSuccessSound();
       fpWrap.classList.add('granted');
       // Turn fingerprint lines green
